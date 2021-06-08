@@ -1,13 +1,11 @@
 {
-  "name": "papper",
+  "name": "app-joy",
   "version": "1.0.0",
-  "description": "",
+  "description": "app educativa",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack-cli --config webpack.config.js",
-    "start:dev": "nodemon src/server/index",
-    "server": "json-server --port 3001 --watch server/db.json"
+    "start:dev": "nodemon src/server/index"
   },
   "keywords": [],
   "author": "",
