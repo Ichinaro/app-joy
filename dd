@@ -1,0 +1,81 @@
+import Publicidad from "../components/Publicidad";
+import Contacto from "../components/Contacto";
+import NotiList from "../components/NotiList";
+import Category from "../components/Category";
+import Reportaje from "../components/Reportaje";
+import Titular from "../components/Titular";
+import useInitialState from "../hooks/useInitialState";
+
+const API = "http://localhost:3001/initialState";
+
+const Home = () => {
+  const initialState = useInitialState(API);
+
+  function locales() {
+    const locales = initialState.noticias.filter((noticia) =>
+      noticia.categoria.includes("Local")
+    );
+    return [locales[0], locales[1], locales[2], locales[3]];
+  }
+
+  function deportes() {
+    const valor = initialState.noticias.filter((noticia) =>
+      noticia.categoria.includes("Deportes")
+    );
+    return [valor[0], valor[1], valor[2], valor[3]];
+  }
+
+  function generales() {
+    const local = initialState.noticias.filter((noticia) =>
+      noticia.categoria.includes("Local")
+    );
+    const nacional = initialState.noticias.filter((noticia) =>
+      noticia.categoria.includes("Nacional")
+    );
+    const internacional = initialState.noticias.filter((noticia) =>
+      noticia.categoria.includes("Internacional")
+    );
+    const deportes = initialState.noticias.filter((noticia) =>
+      noticia.categoria.includes("Deportes")
+    );
+    return [local[0], nacional[0], internacional[0], deportes[0]];
+  }
+  initialState.noticias.length === 0
+    ? console.log("nada llega")
+    : console.log(initialState.noticias);
+
+  return initialState.noticias.length === 0 ? (
+    <h1>Loading...</h1>
+  ) : (
+    <React.Fragment>
+      <div className="container-fluid">
+        <Banner banner={banner} />
+        <Publicidad />
+      </div>
+      <div className="container-fluid py-4">
+        <Titular titulares={initialState.noticias} />
+        <Reportaje noticias={initialState.noticias} />
+        <NotiList noticias={generales()} category={""} />
+        <Contacto />
+        <Category title="Articulos" />
+        <NotiList noticias={locales()} category="Local" />
+        <Category title="Noticias Locales" />
+        <NotiList noticias={locales()} category="Local" />
+        <div className="row text-white deportes">
+          <div className="col-12">
+            <Category title="Deportes" />
+          </div>
+          <div className="col-12">
+            <NotiList noticias={deportes()} category="Deportes" />
+          </div>
+        </div>
+        <Category title="Noticias Nacionales" />
+        <NotiList noticias={locales()} category="Local" />
+        <Category title="Noticias Internacionales" />
+        <NotiList noticias={locales()} category="Local" />
+      </div>
+    </React.Fragment>
+  );
+};
+
+export default Home;
