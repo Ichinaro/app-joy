@@ -70,7 +70,7 @@ const setResponse = (html, preloadedState, manifest) => {
           src="https://kit.fontawesome.com/4cd443e3ac.js"
           crossorigin="anonymous"
         ></script>
-        <title>RanaTv</title>
+        <title>Victoria</title>
       </head>
     
       <body>
