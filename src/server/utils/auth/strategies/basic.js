@@ -6,14 +6,6 @@ require("dotenv").config();
 
 passport.use(
   new BasicStrategy(async function (email, password, cb) {
-    function correo(){
-      if(email == "joypolanco2021@gmail.com"){
-        return true
-      } else {
-        return false
-      }
-    };
-    console.log(correo());
     try {
       console.log("llamado api-server router");
       const { data, status } = await axios({
@@ -24,7 +16,7 @@ passport.use(
           username: email, //toma el email de username
         },
         data: {
-          apiKeyToken: correo() ? process.env.ADMIN_API_KEY_TOKEN : process.env.API_KEY_TOKEN ,
+          apiKeyToken: process.env.API_KEY_TOKEN ,
         },
       });
 

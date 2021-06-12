@@ -1,15 +1,5 @@
 import axios from "axios";
 
-export const setFavorite = (payload) => ({
-  type: "SET_FAVORITE",
-  payload, //El payload recive las Props { cover, title, year, contentRating, duration }
-});
-
-export const deleteFavorite = (payload) => ({
-  type: "DELETE_FAVORITE",
-  payload, //El payload recive la Props { id }
-});
-
 export const loginRequest = (payload) => ({
   type: "LOGIN_REQUEST",
   payload, //El payload recive la Props [event.target.name]: event.target.value de los input
@@ -23,11 +13,6 @@ export const logoutRequest = (payload) => ({
 export const registerRequest = (payload) => ({
   type: "REGISTER_REQUEST",
   payload, //El payload recive la Props email: ,name: ,password: de form
-});
-
-export const getVideoSource = (payload) => ({
-  type: "GET_VIDEO_SOURCE",
-  payload, //El payload recive la Props
 });
 
 export const setError = (payload) => ({
@@ -72,61 +57,3 @@ export const loginUser = ({ email, password }, redirectUrl) => {
       .catch((err) => dispatch(setError(err)));
   };
 };
-
-export const createNoticia = (payload) => ({
-  type: "CREATE_NOTICIA",
-  payload,
-});
-
-export const createNew = (form, redirectUrl) => {
-  return (dispatch) => {
-    axios
-      .post("/movies", form)
-      .then(({ data }) => dispatch(createNoticia(data)))
-      .then(() => {
-        window.location.href = redirectUrl;
-      })
-      .then(console.log("terminamos de crear"))
-      .catch((error) => dispatch(setError(error)));
-  };
-};
-
-export const deleteNew = (movieId, redirectUrl) => {
-  return (dispatch) => {
-    axios
-      .delete(`/movies/${movieId}`)
-      .then(() => {
-        window.location.href = redirectUrl;
-      })
-      .catch((error) => {
-        dispatch(setError(error));
-        console.log("no se pudo action");
-      });
-  };
-};
-
-export const createStream = (form, redirectUrl) => {
-  return (dispatch) => {
-    axios
-      .post("/movies/stream/create", form)
-      .then(() => {
-        window.location.href = redirectUrl;
-      })
-      .then(console.log("terminamos de crear"))
-      .catch((error) => dispatch(setError(error)));
-  };
-};
-
-export const deleteStream = (streamingId, redirectUrl) => {
-  return (dispatch) => {
-    axios
-      .delete(`/movies/stream/${streamingId}`)
-      .then(() => {
-        window.location.href = redirectUrl;
-      })
-      .then(console.log("terminamos de eliminar Link"))
-      .catch((error) => dispatch(setError(error)));
-  };
-};
-
-export { setFavorite as default };
