@@ -9,7 +9,6 @@ const ArtItem = (props) => {
       </Link>
       <div className="text-articulo">
         <h2>{props.articulo.titulo}</h2>
-        <h3>{props.articulo.subTitulo}</h3>
       </div>
     </>
   );
