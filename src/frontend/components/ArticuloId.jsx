@@ -10,7 +10,7 @@ const ArticuloId = (props) =>{
             <p>POR<small> DAN VRAX</small></p>
           </div>
           <div className="imagen">
-            <img src={data.url} alt="" />
+            <img src={data.img} alt="" />
           </div>
           <div className="body">
             <div className="texto-art">
